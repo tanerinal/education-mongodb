@@ -1,0 +1,48 @@
+[
+    {
+      "firstName": "John",
+      "lastName": "Doe",
+      "age": 28,
+      "history": [
+        {
+          "disease": "Cold",
+          "treatment": "Rest and hydration"
+        },
+        {
+          "disease": "Migraine",
+          "treatment": "Painkillers"
+        }
+      ]
+    },
+    {
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "age": 35,
+      "history": [
+        {
+          "disease": "Allergy",
+          "treatment": "Antihistamines"
+        },
+        {
+          "disease": "Sprained Ankle",
+          "treatment": "Physical therapy"
+        }
+      ]
+    },
+    {
+      "firstName": "Ali",
+      "lastName": "Yilmaz",
+      "age": 40,
+      "history": [
+        {
+          "disease": "Hypertension",
+          "treatment": "Medication and diet"
+        },
+        {
+          "disease": "Back Pain",
+          "treatment": "Exercise and physiotherapy"
+        }
+      ]
+    }
+  ]
+  
