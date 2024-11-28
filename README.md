@@ -9,4 +9,6 @@ MongoDB - The Complete Developer's Guide 2024
 2024.11
 
 ## Notes
+- Prepared with MongoDB version 8.0.3
+- Install the compoments within [Installation File](001-installation.md) before start for a smooth experience.
 - Docker version for installation will be added. 

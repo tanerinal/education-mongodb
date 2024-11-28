@@ -14,3 +14,7 @@ Shell tool for database operations.
 
 [Download](https://www.mongodb.com/try/download/shell)
 
+## MongoDB Command Line Database Tools
+A collection of command-line utilities for working with a MongoDB deployment
+
+[Download](https://www.mongodb.com/try/download/database-tools)
