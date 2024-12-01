@@ -97,3 +97,24 @@ db.sales.find({
   }
 ]
 ```
+### Searching Documents with Expressions and Conditions
+
+**Command**
+```json
+db.sales.find({$expr: {
+    $gt: [{
+        $cond: {
+            if: {$gte: ["$volume", 190]}, 
+            then: {$subtract: ["$volume", 30]}, 
+            else: "$volume"}
+        }, 
+        "$target"]
+    }
+})
+```
+**Output**
+```json
+[
+  { _id: ObjectId('674c7d0e1d8fa081900d8191'), volume: 89, target: 80 }
+]
+```
