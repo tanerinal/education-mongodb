@@ -1,1 +1,3 @@
-{$expr: {$gt: ["$visitors", "$expectedVisitors"]}}
+{
+    {}"hobbies": {$elemMatch: {"title": "Sports", "frequency": {$gte: 3}}}}
+}
