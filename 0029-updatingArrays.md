@@ -340,3 +340,154 @@ db.userData.find({"hobbies.frequency": {$gt: 2}})
   }
 ]
 ```
+## Adding Data to Arrays
+
+### Current Data
+
+**Command**
+```json
+db.userData.find({"name": "Maria"})
+
+db.userData.updateOne({"name": "Maria"}, {$push: {"hobbies": {"title": "Sports", "frequency": 2}}})
+
+db.userData.find({"name": "Maria"})
+```
+**Output**
+```json
+[
+  {
+    "_id": ObjectId("6757156e781905fb7c6d1f0f"),
+    "name": "Maria",
+    "hobbies": [
+      { "title": "Good food", "frequency": 3, "goodFrequency": true }
+    ],
+    "isSporty": true
+  }
+]
+
+{
+  "acknowledged": true,
+  "insertedId": null,
+  "matchedCount": 1,
+  "modifiedCount": 1,
+  "upsertedCount": 0
+}
+
+[
+  {
+    "_id": ObjectId("6757156e781905fb7c6d1f0f"),
+    "name": "Maria",
+    "hobbies": [
+      { "title": "Good food", "frequency": 3, "goodFrequency": true },
+      { "title": "Sports", "frequency": 2 }
+    ],
+    "isSporty": true
+  }
+]
+
+```
+
+## Adding Mutiple Data to Arrays
+
+### Current Data
+
+**Command**
+```json
+db.userData.find({"name": "Maria"})
+
+db.userData.updateOne({"name": "Maria"}, {$push: {"hobbies": {$each: [{"title": "Good Vine", "frequency": 1}, {"title": "Hiking", "frequency": 2}], $sort: {"frequency": -1}}}})
+
+db.userData.find({"name": "Maria"})
+```
+
+> Use *$addToSet* command instead of $push in order to prevent adding exact same element(s) into the array.
+
+**Output**
+```json
+[
+  {
+    "_id": ObjectId("6757156e781905fb7c6d1f0f"),
+    "name": "Maria",
+    "hobbies": [
+      { "title": "Good food", "frequency": 3, "goodFrequency": true },
+      { "title": "Sports", "frequency": 2 }
+    ],
+    "isSporty": true
+  }
+]
+
+{
+  "acknowledged": true,
+  "insertedId": null,
+  "matchedCount": 1,
+  "modifiedCount": 1,
+  "upsertedCount": 0
+}
+
+[
+  {
+    "_id": ObjectId("6757156e781905fb7c6d1f0f"),
+    "name": "Maria",
+    "hobbies": [
+      { "title": "Good food", "frequency": 3, "goodFrequency": true },
+      { "title": "Sports", "frequency": 2 },
+      { "title": "Hiking", "frequency": 2 },
+      { "title": "Good Vine", "frequency": 1 }
+    ],
+    "isSporty": true
+  }
+]
+```
+>It adds the items in descending order of *frequency* field values.
+
+## Removing Data from Arrays
+
+### Current Data
+
+**Command**
+```json
+db.userData.find({"name": "Maria"})
+
+db.userData.updateOne({"name": "Maria"}, {$pull: {"hobbies": {"title": "Good Vine"}}})
+
+db.userData.find({"name": "Maria"})
+```
+**Output**
+```json
+[
+  {
+    "_id": ObjectId("6757156e781905fb7c6d1f0f"),
+    "name": "Maria",
+    "hobbies": [
+      { "title": "Good food", "frequency": 3, "goodFrequency": true },
+      { "title": "Sports", "frequency": 2 },
+      { "title": "Hiking", "frequency": 2 },
+      { "title": "Hiking", "frequency": 2 },
+      { "title": "Good Vine", "frequency": 1 },
+      { "title": "Good Vine", "frequency": 1 }
+    ],
+    "isSporty": true
+  }
+]
+
+{
+  "acknowledged": true,
+  "insertedId": null,
+  "matchedCount": 1,
+  "modifiedCount": 1,
+  "upsertedCount": 0
+}
+
+[
+  {
+    "_id": ObjectId("6757156e781905fb7c6d1f0f"),
+    "name": "Maria",
+    "hobbies": [
+      { "title": "Good food", "frequency": 3, "goodFrequency": true },
+      { "title": "Sports", "frequency": 2 },
+      { "title": "Hiking", "frequency": 2 },
+      { "title": "Hiking", "frequency": 2 }
+    ],
+    "isSporty": true
+  }
+]
